@@ -33,9 +33,18 @@ function startGame() {
     const mapRowCols = mapRows.map(row => row.trim().split(''));
     console.log({map, mapRows, mapRowCols});
 
-    for (let row = 1; row <= 10; row++) {
-        for (let col = 1; col <= 10; col++) {
-            game.fillText(emojis[mapRowCols[row - 1][col - 1]], elementsSize * col + 12, elementsSize * row - 8);
-        }
-    }
+    mapRowCols.forEach((row, rowIndex) => {
+        row.forEach((col, colIndex) => {
+           const emoji = emojis[col];
+           const posX = elementsSize * (colIndex + 1) + 12;
+           const posY = elementsSize * (rowIndex + 1) - 8;
+           game.fillText(emoji, posX, posY);
+        });
+    });
+
+    // for (let row = 1; row <= 10; row++) {
+    //     for (let col = 1; col <= 10; col++) {
+    //         game.fillText(emojis[mapRowCols[row - 1][col - 1]], elementsSize * col + 12, elementsSize * row - 8);
+    //     }
+    // }
 }
